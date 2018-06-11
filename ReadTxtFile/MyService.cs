@@ -60,11 +60,12 @@ namespace ReadTxtFile
                     }
                     if(Array != null)
                     {
+                        var letterCase = ConfigurationManager.AppSettings["LetterCase"];
                         if (Array.Length > 0)
-                            File.WriteAllText(Path.GetDirectoryName(e.FullPath) + @"\Artist.txt", Array[0].ToUpper());
+                            File.WriteAllText(Path.GetDirectoryName(e.FullPath) + @"\Artist.txt", letterCase == "U" ? Array[0].ToUpper() : letterCase == "L" ? Array[0].ToLower() : Array[0]);
 
                         if (Array.Length > 1)
-                            File.WriteAllText(Path.GetDirectoryName(e.FullPath) + @"\Title.txt", Array[1].ToUpper());
+                            File.WriteAllText(Path.GetDirectoryName(e.FullPath) + @"\Title.txt", letterCase == "U" ? Array[1].ToUpper() : letterCase == "L" ? Array[1].ToLower() : Array[1]);
                     }
                     else
                     {
